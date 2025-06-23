@@ -1,0 +1,26 @@
+[providers]
+node = "18.x"
+
+[variables]
+NPM_CONFIG_PRODUCTION = "false"
+
+[phases.setup]
+nixPkgs = ["nodejs_18", "npm-9_x"]
+
+[phases.install]
+cmds = [
+  "npm ci --include=dev",
+  "npx prisma generate"
+]
+
+[phases.build]
+cmds = [
+  "npm run build",
+  "npm prune --production"
+]
+
+[start]
+cmd = "npm start"
+
+[staticAssets]
+"public" = "./" 
