@@ -1,15 +1,35 @@
 [phases.setup]
-nixPkgs = ['nodejs', 'postgresql']
+nixPkgs = [
+  "nodejs_20",
+  "postgresql_15",
+  "openssl"
+]
 
 [phases.install]
-cmds = ['npm install']
+cmds = [
+  "npm ci"
+]
 
 [phases.build]
 cmds = [
-  'npx prisma generate',
-  'npx prisma migrate deploy',
-  'npm run build'
+  "npm run build",
+  "npx prisma migrate deploy"
 ]
 
 [start]
-cmd = 'npm run start' 
+cmd = "npm start"
+
+[variables]
+NODE_ENV = "production"
+NEXT_TELEMETRY_DISABLED = "1"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 3
+
+[build]
+baseImage = "node:20-slim"
+buildImage = "node:20-slim" 
