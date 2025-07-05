@@ -34,7 +34,7 @@ export default function HomePage() {
             <span className="text-primary"> Groups</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Organize your shopping with friends and family. Create shared lists, 
+            Organize your shopping needs with friends and family. Create shared lists, 
             track prices, and never forget an item again.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
